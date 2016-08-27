@@ -1,0 +1,16 @@
+[
+{
+  "modid": "bonemealablebabies",
+  "name": "Bone Meal-able Babies",
+  "description": "Makes baby animals grow with Bone Meal.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Xbony2"],
+  "credits": "Xbony2",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
