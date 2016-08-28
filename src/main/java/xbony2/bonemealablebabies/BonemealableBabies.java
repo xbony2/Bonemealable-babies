@@ -25,13 +25,12 @@ public class BonemealableBabies {
 	private static class BoneMealHanlder {
 		@SubscribeEvent
 		public void boneMealAnimals(EntityInteractSpecific event){
-			if(event.getItemStack() != null && event.getItemStack().getItem() == Items.DYE && event.getItemStack().getItemDamage() == 15 && event.getTarget() != null && event.getTarget() instanceof EntityAgeable && ((EntityAgeable)event.getTarget()).getGrowingAge() < 0){
-				System.out.println(":/");
-				System.out.println(((EntityAgeable)event.getTarget()).getGrowingAge());
-				((EntityAgeable)event.getTarget()).addGrowth(8000); //Starts at -24000, so takes 3 bone meal at most
+			if(!event.getWorld().isRemote && event.getItemStack() != null && event.getItemStack().getItem() == Items.DYE && event.getItemStack().getItemDamage() == 15 && event.getTarget() != null && event.getTarget() instanceof EntityAgeable && ((EntityAgeable)event.getTarget()).getGrowingAge() < 0){
+				((EntityAgeable)event.getTarget()).addGrowth(8000 / 20); //Starts at -24000, so takes 3 bone meal at most (also parameter is de-applified, read doc)
 				if(!event.getEntityPlayer().capabilities.isCreativeMode)
 					event.getItemStack().stackSize--;
-				ItemDye.spawnBonemealParticles(event.getWorld(), event.getPos(), 15);
+				
+				event.getWorld().playEvent(2005, event.getPos(), 0); //ask minecraft, not me
 			}
 		}
 	}
