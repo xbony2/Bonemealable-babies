@@ -1,16 +1,13 @@
 package xbony2.bonemealablebabies;
 
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemDye;
-import net.minecraft.util.EnumActionResult;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.event.entity.player.EntityInteractEvent;
 
 @Mod(modid = BonemealableBabies.MODID, version = BonemealableBabies.VERSION)
 public class BonemealableBabies {
@@ -22,15 +19,15 @@ public class BonemealableBabies {
 		MinecraftForge.EVENT_BUS.register(new BoneMealHanlder());
 	}
 	
-	private static class BoneMealHanlder {
+	public static class BoneMealHanlder {
 		@SubscribeEvent
-		public void boneMealAnimals(EntityInteractSpecific event){
-			if(!event.getWorld().isRemote && event.getItemStack() != null && event.getItemStack().getItem() == Items.DYE && event.getItemStack().getItemDamage() == 15 && event.getTarget() != null && event.getTarget() instanceof EntityAgeable && ((EntityAgeable)event.getTarget()).getGrowingAge() < 0){
-				((EntityAgeable)event.getTarget()).addGrowth(8000 / 20); //Starts at -24000, so takes 3 bone meal at most (also parameter is de-applified, read doc)
-				if(!event.getEntityPlayer().capabilities.isCreativeMode)
-					event.getItemStack().stackSize--;
+		public void boneMealAnimals(EntityInteractEvent event){
+			if(!event.entityPlayer.worldObj.isRemote && event.entityPlayer.inventory.mainInventory[event.entityPlayer.inventory.currentItem] != null && event.entityPlayer.inventory.mainInventory[event.entityPlayer.inventory.currentItem].getItem() == Items.dye && event.entityPlayer.inventory.mainInventory[event.entityPlayer.inventory.currentItem].getItemDamage() == 15 && event.target != null && event.target instanceof EntityAgeable && ((EntityAgeable)event.target).getGrowingAge() < 0){
+				((EntityAgeable)event.target).addGrowth(8000 / 20); //Starts at -24000, so takes 3 bone meal at most (also parameter is de-applified, read doc)
+				if(!event.entityPlayer.capabilities.isCreativeMode)
+					event.entityPlayer.inventory.mainInventory[event.entityPlayer.inventory.currentItem].stackSize--;
 				
-				event.getWorld().playEvent(2005, event.getPos(), 0); //ask minecraft, not me
+				event.entityPlayer.worldObj.playAuxSFX(2005, (int)event.target.posX, (int)event.target.posY, (int)event.target.posZ, 0); //ask minecraft, not me
 			}
 		}
 	}
