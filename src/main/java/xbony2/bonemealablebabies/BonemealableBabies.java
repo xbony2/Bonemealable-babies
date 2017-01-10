@@ -2,14 +2,11 @@ package xbony2.bonemealablebabies;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemDye;
-import net.minecraft.util.EnumActionResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = BonemealableBabies.MODID, version = BonemealableBabies.VERSION)
