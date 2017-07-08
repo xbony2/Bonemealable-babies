@@ -24,6 +24,8 @@ hs_err_pid*
 .project
 /bin/
 classes/
+*.iml
+*.idea
 
 # Gradle
 !gradle/wrapper/gradle-wrapper.jar
