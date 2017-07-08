@@ -32,6 +32,7 @@ minecraft {
 
 dependencies {
 	compile files("libs/forgegroove-1.0.0a.jar")
+	compile "org.codehaus.groovy:groovy-all:2.4.12"
 }
 
 processResources {
