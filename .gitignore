@@ -18,17 +18,19 @@ hs_err_pid*
 /build/
 /eclipse/
 /run/
+/.idea/
+/out/
+*.iml
 *.launch
 .settings
 .classpath
 .project
 /bin/
 classes/
-*.iml
-*.idea
 
 # Gradle
 !gradle/wrapper/gradle-wrapper.jar
 /.gradle/
 /bin/
 *.hprof
+!libs/*.jar

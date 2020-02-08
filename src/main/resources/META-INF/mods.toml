@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[30,)"
+
+[[mods]]
+	modId="bonemealable_babies"
+	version="${file.jarVersion}"
+	displayName="Bonemealable Babies"
+	authors="Xbony2"
+	description="Makes baby animals grow with Bone Meal."
+
+[[dependencies.bonemealablebabies]]
+	modId="minecraft"
+	mandatory=true
+	versionRange="[[1.15,]"
+	side="BOTH"
+
+[[dependencies.bonemealablebabies]]
+	modId="forge"
+	mandatory=true
+	versionRange="[30,)"
+	side="BOTH"
