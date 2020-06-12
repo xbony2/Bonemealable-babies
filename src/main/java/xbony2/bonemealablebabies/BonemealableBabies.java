@@ -7,7 +7,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-//@Mod(modid = BonemealableBabies.MODID, version = BonemealableBabies.VERSION)
 @Mod(BonemealableBabies.MODID)
 public class BonemealableBabies {
 	public static final String MODID = "bonemealable_babies";
@@ -19,11 +18,12 @@ public class BonemealableBabies {
 	private static class BoneMealHanlder {
 		@SubscribeEvent
 		public void boneMealAnimals(EntityInteractSpecific event){
-			System.out.println("BONEMEA");
-			
-			if(!event.getWorld().isRemote && event.getItemStack() != null 
+			if(event != null
+					&& event.getWorld().isRemote
+					&& event.getItemStack() != null 
 					&& event.getItemStack().getItem() == Items.BONE_MEAL 
-					&& event.getTarget() != null && event.getTarget() instanceof AgeableEntity && ((AgeableEntity)event.getTarget()).getGrowingAge() < 0){
+					&& event.getTarget() != null && event.getTarget() instanceof AgeableEntity
+					&& ((AgeableEntity)event.getTarget()).getGrowingAge() < 0){
 				((AgeableEntity)event.getTarget()).addGrowth(8000 / 20); //Starts at -24000, so takes 3 bone meal at most (also parameter is de-applified, read doc)
 				if(!event.getPlayer().abilities.isCreativeMode)
 					event.getItemStack().shrink(1); 
