@@ -24,7 +24,8 @@ public class BonemealableBabies {
 					&& event.getTarget() != null && event.getTarget() instanceof AgeableEntity
 					&& ((AgeableEntity) event.getTarget()).getGrowingAge() < 0){
 				
-				((AgeableEntity) event.getTarget()).addGrowth(8000 / 20); // Starts at -24000, so takes 3 bone meal at most (also parameter is de-applified, read doc)
+				// Starts at -24000, so takes 3 bone meal at most (also parameter is de-applified, read doc)
+				((AgeableEntity) event.getTarget()).addGrowth(8000 / 20); 
 
 				if(!event.getPlayer().abilities.isCreativeMode)
 					event.getItemStack().shrink(1);
