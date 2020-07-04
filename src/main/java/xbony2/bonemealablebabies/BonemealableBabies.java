@@ -19,23 +19,17 @@ public class BonemealableBabies {
 		@SubscribeEvent
 		public void boneMealAnimals(EntityInteractSpecific event){
 			if(event != null
-			/* && event.getWorld().isRemote */
+					&& !event.getWorld().isRemote
 					&& event.getItemStack() != null && event.getItemStack().getItem() == Items.BONE_MEAL
 					&& event.getTarget() != null && event.getTarget() instanceof AgeableEntity
 					&& ((AgeableEntity) event.getTarget()).getGrowingAge() < 0){
 				
-				System.out.println("yeet!");
 				((AgeableEntity) event.getTarget()).addGrowth(8000 / 20); // Starts at -24000, so takes 3 bone meal at most (also parameter is de-applified, read doc)
 
 				if(!event.getPlayer().abilities.isCreativeMode)
 					event.getItemStack().shrink(1);
-				
-				if(event.getWorld() != null && !event.getWorld().isRemote){
-					System.out.println("X: " + event.getPos().getX() + "; Y: " + event.getPos().getY() + "; Z: " + event.getPos().getZ());
-					event.getWorld().playEvent(2005, event.getPos().up(), 0); // This makes the particles appear
-					event.getWorld().playEvent(2005, event.getPos().up().up(), 0);
-					event.getWorld().playEvent(2005, event.getPos().up().up().up(), 0);
-				}
+					
+				event.getWorld().playEvent(2005, event.getPos(), 0); // This makes the particles appear
 			}
 		}
 	}
