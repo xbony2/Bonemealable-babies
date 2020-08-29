@@ -1,21 +1,27 @@
 modLoader="javafml"
-loaderVersion="[32,)"
+loaderVersion="[33,)"
+license="CC0 1.0 Universal"
+issueTrackerURL="https://github.com/xbony2/Bonemealable-babies"
 
 [[mods]]
-	modId="bonemealable_babies"
-	version="${file.jarVersion}"
-	displayName="Bonemealable Babies"
-	authors="Xbony2"
-	description="Makes baby animals grow with Bone Meal."
-
-[[dependencies.bonemealablebabies]]
-	modId="minecraft"
-	mandatory=true
-	versionRange="[[1.16,]"
-	side="BOTH"
+modId="bonemealablebabies"
+version="${file.jarVersion}"
+displayName="Bonemealable Babies"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/bonemealable-babies"
+authors="Xbony2"
+description="Makes baby animals grow with Bone Meal."
 
 [[dependencies.bonemealablebabies]]
 	modId="forge"
 	mandatory=true
-	versionRange="[32,)"
+	versionRange="[33,)"
+	ordering="NONE"
 	side="BOTH"
+
+[[dependencies.bonemealablebabies]]
+	modId="minecraft"
+	mandatory=true
+	versionRange="[1.16.2,)"
+	ordering="NONE"
+	side="BOTH"
+
