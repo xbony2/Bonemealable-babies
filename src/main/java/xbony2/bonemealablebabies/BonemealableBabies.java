@@ -1,7 +1,7 @@
 package xbony2.bonemealablebabies;
 
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.item.Items;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.fml.common.Mod;
@@ -12,25 +12,28 @@ public class BonemealableBabies {
 	public static final String MODID = "bonemealable_babies";
 
 	public BonemealableBabies(){
-		MinecraftForge.EVENT_BUS.register(new BoneMealHanlder());
+		MinecraftForge.EVENT_BUS.register(new BoneMealHandler());
 	}
 
-	private static class BoneMealHanlder {
+	private static class BoneMealHandler {
 		@SubscribeEvent
 		public void boneMealAnimals(EntityInteractSpecific event){
 			if(event != null
-					&& !event.getWorld().isRemote
-					&& event.getItemStack() != null && event.getItemStack().getItem() == Items.BONE_MEAL
-					&& event.getTarget() != null && event.getTarget() instanceof AgeableEntity
-					&& ((AgeableEntity) event.getTarget()).getGrowingAge() < 0){
-				
-				// Starts at -24000, so takes 3 bone meal at most (also parameter is de-applified, read doc)
-				((AgeableEntity) event.getTarget()).addGrowth(8000 / 20); 
+					&& !event.getWorld().isClientSide
+					&& event.getItemStack().getItem() == Items.BONE_MEAL
+					&& event.getTarget() != null && event.getTarget() instanceof AgeableMob
+					&& ((AgeableMob) event.getTarget()).getAge() < 0){
 
-				if(!event.getPlayer().abilities.isCreativeMode)
+				// Starts at -24000, so takes 3 bone meal at most
+				// The parameter is de-amplified, according to the javadoc that is now lost
+				((AgeableMob) event.getTarget()).ageUp(8000 / 20);
+
+				if(!event.getPlayer().getAbilities().instabuild)
 					event.getItemStack().shrink(1);
-					
-				event.getWorld().playEvent(2005, event.getPos(), 0); // This makes the particles appear
+
+				// This makes the particles appear
+				// below(1) is needed bc the addGrowthParticles requires a solid block, which it puts the particles atop
+				event.getWorld().levelEvent(1505, event.getPos().below(1), 1);
 			}
 		}
 	}
