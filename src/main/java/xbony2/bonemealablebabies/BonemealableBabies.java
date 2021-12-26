@@ -21,12 +21,13 @@ public class BonemealableBabies {
 			if(event != null
 					&& !event.getWorld().isClientSide
 					&& event.getItemStack().getItem() == Items.BONE_MEAL
-					&& event.getTarget() != null && event.getTarget() instanceof AgeableMob
-					&& ((AgeableMob) event.getTarget()).getAge() < 0){
+					&& event.getTarget() != null
+					&& event.getTarget() instanceof AgeableMob ageableMob
+					&& ageableMob.getAge() < 0){
 
 				// Starts at -24000, so takes 3 bone meal at most
 				// The parameter is de-amplified, according to the javadoc that is now lost
-				((AgeableMob) event.getTarget()).ageUp(8000 / 20);
+				ageableMob.ageUp(8000 / 20);
 
 				if(!event.getPlayer().getAbilities().instabuild)
 					event.getItemStack().shrink(1);

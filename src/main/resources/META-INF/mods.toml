@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[33,)"
+loaderVersion="[39,)"
 license="CC0 1.0 Universal"
 issueTrackerURL="https://github.com/xbony2/Bonemealable-babies"
 
@@ -14,14 +14,13 @@ description="Makes baby animals grow with Bone Meal."
 [[dependencies.bonemealable_babies]]
 	modId="forge"
 	mandatory=true
-	versionRange="[33,)"
+	versionRange="[39,)"
 	ordering="NONE"
 	side="BOTH"
 
 [[dependencies.bonemealable_babies]]
 	modId="minecraft"
 	mandatory=true
-	versionRange="[1.16.2,)"
+	versionRange="[1.18.1,)"
 	ordering="NONE"
 	side="BOTH"
-
