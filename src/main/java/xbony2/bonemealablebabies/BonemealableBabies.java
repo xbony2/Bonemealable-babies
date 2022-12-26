@@ -19,7 +19,7 @@ public class BonemealableBabies {
 		@SubscribeEvent
 		public void boneMealAnimals(EntityInteractSpecific event){
 			if(event != null
-					&& !event.getWorld().isClientSide
+					&& !event.getLevel().isClientSide
 					&& event.getItemStack().getItem() == Items.BONE_MEAL
 					&& event.getTarget() != null
 					&& event.getTarget() instanceof AgeableMob ageableMob
@@ -29,12 +29,12 @@ public class BonemealableBabies {
 				// The parameter is de-amplified, according to the javadoc that is now lost
 				ageableMob.ageUp(8000 / 20);
 
-				if(!event.getPlayer().getAbilities().instabuild)
+				if(!event.getEntity().getAbilities().instabuild)
 					event.getItemStack().shrink(1);
 
 				// This makes the particles appear
 				// below(1) is needed bc the addGrowthParticles requires a solid block, which it puts the particles atop
-				event.getWorld().levelEvent(1505, event.getPos().below(1), 1);
+				event.getLevel().levelEvent(1505, event.getPos().below(1), 1);
 			}
 		}
 	}
