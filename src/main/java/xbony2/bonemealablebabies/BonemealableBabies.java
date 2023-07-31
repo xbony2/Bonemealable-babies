@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @Mod(BonemealableBabies.MODID)
 public class BonemealableBabies {
-	public static final String MODID = "bonemealable_babies";
+	public static final String MODID = "bonemealablebabies";
 
 	public BonemealableBabies(){
 		MinecraftForge.EVENT_BUS.register(new BoneMealHandler());
