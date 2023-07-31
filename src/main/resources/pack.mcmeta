@@ -1,6 +1,8 @@
 {
-	"pack": {
-		"pack_format": 4,
-		"description": "The default data for Long Fall Boots"
-	}
+  "pack": {
+    "description": {
+      "text": "${mod_id} resources"
+    },
+    "pack_format": ${pack_format_number}
+  }
 }
